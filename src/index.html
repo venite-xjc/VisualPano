@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <script src="./three.min.js">console.log("成功引入");</script>
+    <script src="./panolens.min.js">console.log("成功引入");</script>
+  </head>
+  
+  <body>
+    <style>
+         html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            padding: 0;
+    }
+    </style>
+    <script>
+        // var panorama = new PANOLENS.ImagePanorama('vscode-resource:/c%3A/Users/venite/Desktop/visualpano/src/a.png'), viewer = new PANOLENS.Viewer( { output: 'console' } );
+        
+        // function render(path){
+        //     if(panorama == null) {
+        //         panorama = new PANOLENS.ImagePanorama(path);
+        //         viewer.add(panorama);
+        //     }
+        //     else {
+        //         panorama.dispose();
+        //         view.remove(panorama);
+        //         panorama.reset();
+        //         panorama.load(path);
+        //         viewer.add(panorama);
+        //     }
+        //     console.log(path);
+
+        //     // console.log('准备渲染');
+        //     // if(panorama!=null){
+        //     //     panorama.dispose();
+        //     //     viewer.remove( panorama );
+        //     //     panorama = null;
+        //     // }
+        //     // console.log(path);
+        //     // panorama = new PANOLENS.ImagePanorama(path);
+        //     // panorama.load(path)
+        //     // panorama.reset();
+        //     // viewer.add( panorama );
+        //     // console.log('成功渲染！');
+        // }
+
+        // render('vscode-resource:/c%3A/Users/venite/Desktop/visualpano/src/a.png');
+        var panorama = undefined, viewer = undefined;
+        window.addEventListener('message', event => {
+
+            var message = event.data; // The JSON data our extension sent
+            
+            panorama = new PANOLENS.ImagePanorama(message.text)
+            viewer = new PANOLENS.Viewer( { output: 'console' } );
+            viewer.add(panorama);
+        }); 
+
+        
+
+    </script>
+
+  </body>
+</html>
