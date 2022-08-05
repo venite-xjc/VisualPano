@@ -10,7 +10,7 @@ This extension aims to provide a panorama view for a single image.
 命令，打开webveiw
 
 ---
-### 1.0.0
+### 0.0.1
 
 仅支持简单的预览，不支持自动焦点更新
 
