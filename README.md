@@ -1,6 +1,7 @@
 # VisualPano README
 
 This extension aims to provide a panorama view for a single image.
+
 该插件能够将单张图转化为$360\degree$全景视图。
 
 
