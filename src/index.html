@@ -53,10 +53,11 @@
         window.addEventListener('message', event => {
 
             var message = event.data; // The JSON data our extension sent
-            
+            console.log("get path of image, try to render");
             panorama = new PANOLENS.ImagePanorama(message.text)
             viewer = new PANOLENS.Viewer( { output: 'console' } );
             viewer.add(panorama);
+            console.log("successfully render");
         }); 
 
         

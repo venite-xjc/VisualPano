@@ -40,7 +40,10 @@ function activate(context) {
 				);
 			
 			if(uri) {
-			currentPanel.webview.postMessage({text: currentPanel.webview.asWebviewUri(uri).toString(), message: 'no'});
+				console.log('有uri');
+			currentPanel.webview.postMessage({text: currentPanel.webview.asWebviewUri(uri).toString()});
+			} else {
+				console.log("没有uri");
 			}
 		})
 	);
