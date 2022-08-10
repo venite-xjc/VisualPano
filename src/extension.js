@@ -17,9 +17,9 @@ function activate(context) {
 		vscode.commands.registerCommand('VisualPano.start', (uri)=>{
 			
 			if (currentPanel) {
-				currentPanel.dispose();
-				currentPanel = undefined;
-			} 
+				// currentPanel.dispose();
+				// currentPanel = undefined;
+			} else {
 				currentPanel = vscode.window.createWebviewPanel(
 					'panorama',
 					'panorama',
@@ -38,7 +38,8 @@ function activate(context) {
 					null,
 					context.subscriptions
 				);
-			
+			}
+				
 			if(uri) {
 				console.log('有uri');
 			currentPanel.webview.postMessage({text: currentPanel.webview.asWebviewUri(uri).toString()});

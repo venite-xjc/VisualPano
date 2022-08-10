@@ -1,9 +1,9 @@
 {
   "name": "visualpano",
   "displayName": "VisualPano",
-  "description": "",
+  "description": "Visualize panorama view from single image",
   "publisher": "venite",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.69.0"
   },
@@ -15,8 +15,7 @@
   ],
   "main": "./src/extension.js",
   "contributes": {
-    "commands": 
-    [
+    "commands": [
       {
         "command": "VisualPano.start",
         "title": "VisualPano: Start a panorama view | 开启全景"
@@ -27,7 +26,7 @@
         {
           "command": "VisualPano.start",
           "group": "z_commands",
-          "when": "resourceExtname == .jpg || resourceExtname == .png"
+          "when": "resourceExtname == .jpg || resourceExtname == .png || resourceExtname == .jpeg"
         }
       ]
     }
@@ -38,18 +37,21 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.69.0",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.69.0",
+    "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.20.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
-    "typescript": "^4.7.4",
-    "@vscode/test-electron": "^2.1.5"
+    "typescript": "^4.7.4"
   },
   "repository": {
-		"type": "git",
-		"url": "https://github.com/venite-xjc/VisualPano.git"
-	}
+    "type": "git",
+    "url": "https://github.com/venite-xjc/VisualPano.git"
+  },
+  "dependencies": {
+    "three": "^0.126.1"
+  }
 }

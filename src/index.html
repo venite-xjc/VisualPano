@@ -1,68 +1,106 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
-    <script src="./three.min.js">console.log("成功引入");</script>
-    <script src="./panolens.min.js">console.log("成功引入");</script>
-  </head>
-  
-  <body>
-    <style>
-         html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            padding: 0;
-    }
-    </style>
-    <script>
-        // var panorama = new PANOLENS.ImagePanorama('vscode-resource:/c%3A/Users/venite/Desktop/visualpano/src/a.png'), viewer = new PANOLENS.Viewer( { output: 'console' } );
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+        <title>这是一个基于three.js的全景项目</title>
         
-        // function render(path){
-        //     if(panorama == null) {
-        //         panorama = new PANOLENS.ImagePanorama(path);
-        //         viewer.add(panorama);
-        //     }
-        //     else {
-        //         panorama.dispose();
-        //         view.remove(panorama);
-        //         panorama.reset();
-        //         panorama.load(path);
-        //         viewer.add(panorama);
-        //     }
-        //     console.log(path);
+    </head>
 
-        //     // console.log('准备渲染');
-        //     // if(panorama!=null){
-        //     //     panorama.dispose();
-        //     //     viewer.remove( panorama );
-        //     //     panorama = null;
-        //     // }
-        //     // console.log(path);
-        //     // panorama = new PANOLENS.ImagePanorama(path);
-        //     // panorama.load(path)
-        //     // panorama.reset();
-        //     // viewer.add( panorama );
-        //     // console.log('成功渲染！');
-        // }
+    <body ondragstart="return false">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #canvasContainer{
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+            }
+            #topBar{
+                position: fixed;
+                height: 40px;
+                width: 20%;
+                margin-left: 35%;
+                margin-top: 10px;
+                border-radius: 10px;
+                /* border-color: #88ADA6; */
+                padding: 5px;
+                border: 0;
+                border-style: solid;
+                background-color: #f0fcff;
+                opacity: 65%;
+                display: flex;
+            }
+            button{
+                height: 40px;
+                width: 40px;
+                border-radius: 5px;
+                border: 0;
+                text-align: center;
+                font-size: large;
+                background-color: #f0fcff;
+                flex: 1;
+                padding: 0;
+                position: relative;
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            canvas{
+                padding: 0;
+                width: auto;
+                height: 100%;
+                flex: 1;
+            }
+            .clear{
+                position: absolute;
+                left: 20px;
+                top: 20px;
+                width: 36px;
+                height: 36px;
+                border-radius: 36px;
+                border-width: 3px;
+                border-style: solid;
+                background-color: #C0EBD7;
+                border-color: #88ADA6;
+                opacity: 95%;
+            }
+            .ico{
+                position: relative;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                margin-left: auto;
+                margin-right: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 30px;
+                width: 30px;
+            }
+        </style>
+        <div id="topBar">
+            <button id="same">
+                <img src="./pin.png", class="ico">
+            </button>
+            <button id="add">
+                <img src="./addfile.png", class="ico">
+            </button>
+            <button id="substract">
+                <img src="./cut.png", class="ico">
+            </button>
+        </div>
+            
+        <div id="canvasContainer">      
+        </div>
 
-        // render('vscode-resource:/c%3A/Users/venite/Desktop/visualpano/src/a.png');
-        var panorama = undefined, viewer = undefined;
-        window.addEventListener('message', event => {
-
-            var message = event.data; // The JSON data our extension sent
-            console.log("get path of image, try to render");
-            panorama = new PANOLENS.ImagePanorama(message.text)
-            viewer = new PANOLENS.Viewer( { output: 'console' } );
-            viewer.add(panorama);
-            console.log("successfully render");
-        }); 
-
+        <script src="./panoProvider.js" type="module"></script>
         
-
-    </script>
-
-  </body>
+    </body>
 </html>
