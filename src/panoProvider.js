@@ -7,20 +7,35 @@ var globalCameraY = 0;
 var rotateSpeed = 0.003;
 var canvasList = [];
 var canAddCanvas = false;
+var canShowData = false;
 
 function createCanvas(path){
-    let that = this
-
+    let that = this;
+    this.index = canvasList.length;
     const newCanvas = document.createElement( 'canvas' );
     var parent = document.getElementById('canvasContainer');
-    parent.appendChild(newCanvas);
-
+    var box = document.createElement('div')
+    box.classList.add('box')
     var clearBtn = document.createElement('div');
     clearBtn.classList.add('clear');
-    newCanvas.appendChild(clearBtn);
+    var board = document.createElement('ul')
+    board.classList.add('board')
+    var label1 = document.createElement('li');
+    var label2 = document.createElement('li');
+    var label3 = document.createElement('li');
+
+
+    parent.appendChild(box);
+    box.appendChild(newCanvas)
+    box.appendChild(clearBtn);
+    box.appendChild(board)
+    board.appendChild(label1);
+    board.appendChild(label2);
+    board.appendChild(label3);
     
     const scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera( 75, (window.innerWidth/(canvasList.length+1)) / window.innerHeight, 0.1, 1000 );
+    // this.camera.lookAt(new THREE.Vector3(-1, 0, 0));
     this.renderer = new THREE.WebGLRenderer( {canvas: newCanvas, antialias: true} );
 
     this.renderer.setSize( window.innerWidth/(canvasList.length+1), window.innerHeight );
@@ -62,20 +77,28 @@ function createCanvas(path){
             if (this.mesh.rotation.x < -Math.PI/2) {
                 this.mesh.rotation.x = -Math.PI/2;
             }
+            if (this.mesh.rotation.y > Math.PI/2) {
+                this.mesh.rotation.y = -Math.PI*3/2;
+            }
+            if (this.mesh.rotation.y < -Math.PI*3/2) {
+                this.mesh.rotation.y = Math.PI/2;
+            }
             currentX = event.clientX;
             currentY = event.clientY;
+            this.updateData();
         }    
     }
     newCanvas.onmousewheel = (event) => {
         if (!synchronous) {
             this.camera.fov -= event.wheelDelta>0?1:-1;
-            if (this.camera.fov > 120) {
-                this.camera.fov = 120;
+            if (this.camera.fov > 150) {
+                this.camera.fov = 150;
             }
             if (this.camera.fov < 30) {
                 this.camera.fov = 30;
             }
             this.camera.updateProjectionMatrix();
+            this.updateData();
         }
     }
     newCanvas.ondragenter = (event) => {
@@ -99,7 +122,29 @@ function createCanvas(path){
         
         console.log(file)
     }
-    
+    clearBtn.onclick = (event) => {
+        var p = document.getElementById('canvasContainer');
+        var canvas2delete = p.children[this.index];
+        p.removeChild(canvas2delete);
+        canvasList.splice(this.index, 1);
+        resizeCanvas();
+        for(var i in canvasList){
+            canvasList[i].index = i;
+        }
+    }
+
+    this.updateData = () => {
+        if(canShowData) {
+            label1.innerHTML = "vertical FoV:"+this.camera.fov.toString()
+            label2.innerHTML = 'vertical degree:'+(-this.mesh.rotation.x/Math.PI*180).toString().substring(0, 7);
+            label3.innerHTML = 'horizontal degree:'+((this.mesh.rotation.y/Math.PI*180)+90).toString().substring(0, 7);
+        } else {
+            label1.innerHTML = '';
+            label2.innerHTML = '';
+            label3.innerHTML = '';
+        }
+    }
+
     function animate() {
         requestAnimationFrame( animate );
         that.renderer.render( scene, that.camera ); 
@@ -147,7 +192,7 @@ function controlAll() {
             var deltax = rotateSpeed * (event.clientY-globalCameraY);
             for(var i of canvasList) {
                 i.mesh.rotation.y -= deltay;
-                i.mesh.rotation.x -= deltax;
+                i.mesh.rotation.x += deltax;
                 // console.log(event.clientX, currentX);
                 // console.log(event.clientY, currentY);
                 if (i.mesh.rotation.x > Math.PI/2) {
@@ -156,11 +201,19 @@ function controlAll() {
                 if (i.mesh.rotation.x < -Math.PI/2) {
                     i.mesh.rotation.x = -Math.PI/2;
                 }
+                if (i.mesh.rotation.y > Math.PI) {
+                    i.mesh.rotation.y = -Math.PI;
+                }
+                if (i.mesh.rotation.y < -Math.PI) {
+                    i.mesh.rotation.y = Math.PI;
+                }
                 globalCameraX = event.clientX;
                 globalCameraY = event.clientY;
             }
-            
-        }    
+        }  
+        for(var i of canvasList){
+            i.updateData();
+        }  
     }
     parent.onmousewheel = (event) => {
         if (synchronous) {
@@ -176,6 +229,9 @@ function controlAll() {
                 i.camera.updateProjectionMatrix();
                 
             }
+        }
+        for(var i of canvasList){
+            i.updateData();
         }
     }
 }
@@ -232,11 +288,15 @@ document.getElementById('add').addEventListener('click', ()=>{
     }
 })
 
-document.getElementById('substract').addEventListener('click', ()=>{
-    var p = document.getElementById('canvasContainer');
-    var canvas2delete = p.lastChild;
-    p.removeChild(canvas2delete);
-    canvasList.pop();
-    resizeCanvas();
+document.getElementById('data').addEventListener('click', ()=>{
+    canShowData = !canShowData;
+    if(canShowData) {
+        document.getElementById('data').style.backgroundColor = '#cbd2d4';
+    } else {
+        document.getElementById("data").style.backgroundColor = '#f0fcff';
+    }
+    for(var i of canvasList){
+        i.updateData();
+    }
 })
 

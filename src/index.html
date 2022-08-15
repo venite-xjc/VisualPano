@@ -23,22 +23,22 @@
             }
             #topBar{
                 position: fixed;
-                height: 40px;
+                height: 30px;
                 width: 20%;
-                margin-left: 35%;
+                margin-left: 40%;
                 margin-top: 10px;
                 border-radius: 10px;
-                /* border-color: #88ADA6; */
                 padding: 5px;
                 border: 0;
                 border-style: solid;
                 background-color: #f0fcff;
                 opacity: 65%;
                 display: flex;
+                z-index: 9;
             }
             button{
-                height: 40px;
-                width: 40px;
+                height: 30px;
+                width: 30px;
                 border-radius: 5px;
                 border: 0;
                 text-align: center;
@@ -47,8 +47,8 @@
                 flex: 1;
                 padding: 0;
                 position: relative;
-                margin-left: 10px;
-                margin-right: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
                 margin-top: 0px;
                 margin-bottom: 0px;
             }
@@ -57,19 +57,23 @@
                 width: auto;
                 height: 100%;
                 flex: 1;
+            
+            }
+            .box{
+                position: relative;
             }
             .clear{
                 position: absolute;
                 left: 20px;
-                top: 20px;
-                width: 36px;
-                height: 36px;
-                border-radius: 36px;
-                border-width: 3px;
+                top: 70px;
+                width: 20px;
+                height: 20px;
+                border-radius: 20px;
+                border-width: 4px;
                 border-style: solid;
-                background-color: #C0EBD7;
-                border-color: #88ADA6;
-                opacity: 95%;
+                background-color: #dcdfdd;
+                border-color: #8f9a98be;
+                opacity: 95%; 
             }
             .ico{
                 position: relative;
@@ -81,8 +85,25 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                height: 30px;
-                width: 30px;
+                height: 20px;
+                width: 20px;
+            }
+            .board{
+                position: absolute;
+                bottom: 20px;
+                left: 5px;
+                width:30px;
+                height: 100px;
+                list-style: none;
+                margin: 0;
+            }
+            li{
+                font-size: large;
+                word-break:keep-all;
+                white-space:nowrap;
+                text-overflow:ellipsis;
+                color: black;
+                font-weight: 500;
             }
         </style>
         <div id="topBar">
@@ -92,8 +113,8 @@
             <button id="add">
                 <img src="./addfile.png", class="ico">
             </button>
-            <button id="substract">
-                <img src="./cut.png", class="ico">
+            <button id="data">
+                <img src="./data.png", class="ico">
             </button>
         </div>
             
