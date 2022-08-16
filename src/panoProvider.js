@@ -192,7 +192,7 @@ function controlAll() {
             var deltax = rotateSpeed * (event.clientY-globalCameraY);
             for(var i of canvasList) {
                 i.mesh.rotation.y -= deltay;
-                i.mesh.rotation.x += deltax;
+                i.mesh.rotation.x -= deltax;
                 // console.log(event.clientX, currentX);
                 // console.log(event.clientY, currentY);
                 if (i.mesh.rotation.x > Math.PI/2) {

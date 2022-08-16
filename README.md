@@ -14,16 +14,16 @@ Support simultaneous visualization of multiple images, support fixed perspective
 命令，打开webveiw
 
 #### operate
-- 右键选择`VisualPano: Start a panorama view | 开启全景`将图片展示到webview中
+- 右键选择`VisualPano: Start a panorama view | 开启全景`将图片展示到webview中![](gif/add.gif)
 - 锁定按钮选中后，会同步所有全景的视角
-- 添加按钮选中后，如果选择展示新的图片，不会覆盖当前图片，而是添加一个新的视图
-- 数据按钮按下后，会显示垂直fov,$\phi$和$\theta$
-- 左上角可关闭视图
+- 添加按钮选中后，如果选择展示新的图片，不会覆盖当前图片，而是添加一个新的视图![](gif/add&fix.gif)
+- 数据按钮按下后，会显示视图参数![](gif/parameter.gif)
+- 左上角可关闭视图![](gif/delete.gif)
 
 ---
 ### 0.0.1
 
-仅支持简单的预览，不支持自动焦点更新。
+基于panolens.js实现，仅支持简单的预览，不支持自动焦点更新。
 
 ### 1.0.0
 
@@ -32,6 +32,10 @@ Support simultaneous visualization of multiple images, support fixed perspective
 ### 1.1.0
 
 更新了界面，可以显示fov和角度信息，可以关闭视图。
+
+### 1.1.2
+
+修复了已知bug，更新readme
 
 ---
 based on:
