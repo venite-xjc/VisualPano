@@ -35,7 +35,11 @@ Support simultaneous visualization of multiple images, support fixed perspective
 
 ### 1.1.2
 
-修复了已知bug，更新readme
+修复了已知bug，更新readme。
+
+### 1.1.4
+
+修复了已知bug，更新icon，改进操作。
 
 ---
 based on:

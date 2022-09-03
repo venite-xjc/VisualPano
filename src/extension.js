@@ -20,10 +20,11 @@ function activate(context) {
 				// currentPanel.dispose();
 				// currentPanel = undefined;
 			} else {
+				console.log('create new panel')
 				currentPanel = vscode.window.createWebviewPanel(
 					'panorama',
 					'panorama',
-					vscode.ViewColumn.Two,
+					vscode.ViewColumn.One,
 					{
 						enableScripts: true, 
             			retainContextWhenHidden: true,
@@ -38,6 +39,10 @@ function activate(context) {
 					null,
 					context.subscriptions
 				);
+				if(uri) {
+					console.log('有uri');
+					setTimeout(()=>currentPanel.webview.postMessage({text: currentPanel.webview.asWebviewUri(uri).toString()}), 1000);
+				}
 			}
 				
 			if(uri) {
